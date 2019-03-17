@@ -1,0 +1,83 @@
+// @import './normalize';
+@import '../../node_modules/bootstrap/scss/functions';
+@import './variables';
+@import '../../node_modules/bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,500,700,900');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+
+html,
+body {
+  font-family: 'Noto Sans TC',  sans-serif;
+  background-color: #f2f2f2;
+}
+.loading.finish {
+  display: none !important;
+}
+.mapIcon {
+  font-size: 30px;
+  opacity: 0;
+}
+.card {
+  box-shadow: 0 0 5px #BDBDBD;
+  transition: all .5s;
+  &:hover, &:focus {
+    transform: translateY(-5px);
+    box-shadow: 0 3px 3px $primary;
+    cursor: pointer;
+    .mapIcon {
+      opacity: 1;
+      animation: jump 0.5s infinite ease;
+    }
+  }
+}
+.mapModal {
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.5);
+  transition: all .5s;
+  box-shadow: 0 0 10px rgba($primary,.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__content {
+    background-color: #fefefe;
+    width: 70%;
+    border: 1px solid #888;
+    margin: auto;
+  }
+  &__title {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__close {
+    color: #BDBDBD;
+    font-size: 28px;
+    font-weight: bold;
+    transition: transform .5s;
+    &:hover {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+      transform: rotate(180deg)
+    }
+  }
+  #mapModal__map {
+    width: 100%;
+    height: 400px;
+  }
+}
+
+@keyframes jump {
+  0%, 100% {
+    transform: translateY(0px)
+  }
+  50% {
+    transform: translateY(5px)
+  }
+}

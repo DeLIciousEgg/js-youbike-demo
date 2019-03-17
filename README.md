@@ -1,1 +1,1 @@
-[Demo](https://deliciousegg.github.io/js-youbike-demo/index.html)
+[Demo](https://deliciousegg.github.io/js-youbike-demo/)

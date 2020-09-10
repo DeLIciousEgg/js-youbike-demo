@@ -13,13 +13,13 @@
   let filterRevert = false
   let filterStop = false
 
-  function getBikeData() {
+  function getBikeData () {
     const API =
-      'https://script.google.com/macros/s/AKfycbzp8cHN_zwb9Gtc4fKH0B790sdwOnZAOjJZ1etKl7fWNsNBj7hh/exec?url=http://data.ntpc.gov.tw/api/v1/rest/datastore/382000000A-000352-001'
+      'https://script.google.com/macros/s/AKfycbzp8cHN_zwb9Gtc4fKH0B790sdwOnZAOjJZ1etKl7fWNsNBj7hh/exec?url=https://data.ntpc.gov.tw/api/datasets/71CD1490-A2DF-4198-BEF1-318479775E8A/json/preview'
     return new Promise((resolve, reject) => {
       axios(API)
         .then(res => {
-          const data = res.data.result.records
+          const data = res.data
           if (!data) return false
           // console.log(data)
           resolve(data)
@@ -30,14 +30,14 @@
         })
     })
   }
-  function getAreas(data) {
+  function getAreas (data) {
     let area = new Set()
     data.forEach(item => {
       area.add(item.sarea)
     })
     return Array.from(area)
   }
-  function setArea(areas) {
+  function setArea (areas) {
     let areaHTML = ``
 
     areas.forEach((area, index) => {
@@ -59,7 +59,7 @@
     //   chkArea.forEach(item => item.checked = isChecked)
     // })
   }
-  function setPagination(data) {
+  function setPagination (data) {
     $('#pagination').pagination({
       dataSource: data,
       pageSize: 10,
@@ -72,7 +72,7 @@
       }
     })
   }
-  function siteDataFilter() {
+  function siteDataFilter () {
     let filterData = [...siteData]
     if (filterArea.length > 0)
       filterData = filterData.filter(item => {
@@ -97,7 +97,7 @@
     siteCountDOM.innerText = filterData.length
     return filterData
   }
-  function setSite(sites) {
+  function setSite (sites) {
     let siteHTML = ''
     sites.forEach(site => {
       siteHTML += `
@@ -137,7 +137,7 @@
     })
     bikeSiteDOM.innerHTML = siteHTML
   }
-  function initMap(lat, lng) {
+  function initMap (lat, lng) {
     let position = { lat, lng }
     var map = new google.maps.Map(document.getElementById('mapModal__map'), {
       zoom: 18,
